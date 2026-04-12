@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treatment Cost Calculator - ChinaMed Connect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a4d2e;
+            --primary-light: #2d6a4f;
+            --accent: #e8b923;
+            --text-dark: #1f1f1f;
+            --text-light: #5a5a5a;
+            --bg-light: #fafafa;
+            --bg-white: #ffffff;
+            --border: #e0e0e0;
+            --success: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+
+        .header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .calculator-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Work Sans', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .calculate-btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(26, 77, 46, 0.2);
+        }
+
+        /* Results Panel */
+        .results-panel {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            color: white;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .results-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .cost-breakdown {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .cost-item:last-child {
+            border-bottom: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid rgba(255,255,255,0.3);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .cost-label {
+            opacity: 0.9;
+        }
+
+        .cost-value {
+            font-weight: 600;
+        }
+
+        .comparison-section {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .comparison-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .comparison-bars {
+            margin-top: 1rem;
+        }
+
+        .comparison-bar {
+            margin-bottom: 1.5rem;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .bar-track {
+            height: 30px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 1rem;
+            font-weight: 600;
+            transition: width 0.5s ease;
+        }
+
+        .savings-highlight {
+            background: rgba(40, 167, 69, 0.3);
+            border: 2px solid rgba(40, 167, 69, 0.5);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .savings-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4caf50;
+            margin: 0.5rem 0;
+        }
+
+        .cta-section {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: #f5c842;
+            transform: translateY(-2px);
+        }
+
+        .disclaimer {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Price Table */
+        .price-reference {
+            margin-top: 3rem;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .price-reference h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .price-table {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tbody tr:hover {
+            background: var(--bg-light);
+        }
+
+        .price-high {
+            color: #dc3545;
+            font-weight: 600;
+        }
+
+        .price-low {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-panel {
+                position: static;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Treatment Cost Calculator</h1>
+            <p>Compare treatment costs between your home country and China</p>
+        </div>
+
+        <div class="calculator-grid">
+            <!-- Calculator Form -->
+            <div class="calculator-form">
+                <div class="form-section">
+                    <h3 class="section-title">1. Treatment Details</h3>
+                    
+                    <div class="form-group">
+                        <label>Select Procedure/Service</label>
+                        <select id="procedure">
+                            <option value="">-- Select Treatment --</option>
+                            <optgroup label="Cosmetic Surgery">
+                                <option value="rhinoplasty">Rhinoplasty (Nose Job)</option>
+                                <option value="facelift">Facelift</option>
+                                <option value="breast-augmentation">Breast Augmentation</option>
+                                <option value="liposuction">Liposuction</option>
+                                <option value="tummy-tuck">Tummy Tuck</option>
+                            </optgroup>
+                            <optgroup label="Dental Care">
+                                <option value="dental-implant">Dental Implant (per tooth)</option>
+                                <option value="dental-crown">Dental Crown</option>
+                                <option value="veneers">Veneers (per tooth)</option>
+                                <option value="full-mouth-rehab">Full Mouth Rehabilitation</option>
+                            </optgroup>
+                            <optgroup label="Cardiac Care">
+                                <option value="heart-bypass">Heart Bypass Surgery</option>
+                                <option value="valve-replacement">Heart Valve Replacement</option>
+                                <option value="angioplasty">Angioplasty</option>
+                            </optgroup>
+                            <optgroup label="Orthopedics">
+                                <option value="hip-replacement">Hip Replacement</option>
+                                <option value="knee-replacement">Knee Replacement</option>
+                                <option value="spine-surgery">Spine Surgery</option>
+                            </optgroup>
+                            <optgroup label="Other">
+                                <option value="ivf-cycle">IVF Treatment (1 cycle)</option>
+                                <option value="cataract-surgery">Cataract Surgery</option>
+                                <option value="health-checkup">Premium Health Checkup</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Home Country</label>
+                        <select id="homeCountry">
+                            <option value="USA">United States</option>
+                            <option value="Canada">Canada</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Germany">Germany</option>
+                            <option value="Singapore">Singapore</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">2. Travel Preferences</h3>
+                    
+                    <div class="form-group">
+                        <label>Hospital Location in China</label>
+                        <select id="location">
+                            <option value="beijing">Beijing</option>
+                            <option value="shanghai">Shanghai</option>
+                            <option value="guangzhou">Guangzhou/Shenzhen</option>
+                            <option value="taiwan">Taiwan</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Expected Stay Duration (days)</label>
+                        <input type="number" id="stayDuration" value="7" min="1" max="90">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Number of Companions</label>
+                        <input type="number" id="companions" value="0" min="0" max="5">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">3. Additional Services</h3>
+                    
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="interpretation" checked>
+                            <label for="interpretation">Medical Interpretation Services</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="pickup" checked>
+                            <label for="pickup">Airport Pickup & Transfer</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="accommodation">
+                            <label for="accommodation">Accommodation Assistance</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="recovery">
+                            <label for="recovery">Recovery Tourism Package</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="calculate-btn" onclick="calculateCost()">Calculate Total Cost</button>
+            </div>
+
+            <!-- Results Panel -->
+            <div class="results-panel">
+                <h2 class="results-title">💰 Cost Estimate</h2>
+                
+                <div class="cost-breakdown" id="costBreakdown">
+                    <div class="cost-item">
+                        <span class="cost-label">Medical Procedure</span>
+                        <span class="cost-value" id="procedureCost">$0</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="cost-label">Hospital Stay & Care</span>
+                        <span class="cost-value" id="hospitalCost">$0</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="cost-label">Accommodation</span>
+                        <span class="cost-value" id="accommodationCost">$0</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="cost-label">Additional Services</span>
+                        <span class="cost-value" id="additionalCost">$0</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="cost-label">Round-trip Flight (est.)</span>
+                        <span class="cost-value" id="flightCost">$0</span>
+                    </div>
+                    <div class="cost-item">
+                        <span class="cost-label">TOTAL IN CHINA</span>
+                        <span class="cost-value" id="totalChina">$0</span>
+                    </div>
+                </div>
+
+                <div class="comparison-section">
+                    <h3 class="comparison-title">📊 Cost Comparison</h3>
+                    <div class="comparison-bars">
+                        <div class="comparison-bar">
+                            <div class="bar-label">
+                                <span id="homeCountryLabel">USA</span>
+                                <span id="homeCountryCost">$0</span>
+                            </div>
+                            <div class="bar-track">
+                                <div class="bar-fill" id="homeCountryBar" style="width: 100%;">100%</div>
+                            </div>
+                        </div>
+                        <div class="comparison-bar">
+                            <div class="bar-label">
+                                <span>China (Total)</span>
+                                <span id="chinaTotal">$0</span>
+                            </div>
+                            <div class="bar-track">
+                                <div class="bar-fill" id="chinaBar" style="width: 40%; background: #4caf50;">40%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="savings-highlight">
+                    <div>💚 You Save</div>
+                    <div class="savings-amount" id="savingsAmount">$0</div>
+                    <div id="savingsPercent">0% less than home country</div>
+                </div>
+
+                <div class="cta-section">
+                    <a href="consultation-form.html" class="cta-btn">Get Personalized Quote →</a>
+                </div>
+
+                <div class="disclaimer">
+                    ℹ️ <strong>Note:</strong> These are estimated costs for reference only. Actual prices may vary based on hospital, doctor, complexity, and individual circumstances. Contact us for a detailed personalized quote.
+                </div>
+            </div>
+        </div>
+
+        <!-- Price Reference Table -->
+        <div class="price-reference">
+            <h2>📋 Treatment Cost Reference Guide</h2>
+            <div class="price-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Procedure</th>
+                            <th>USA Cost</th>
+                            <th>China Cost</th>
+                            <th>Savings</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Rhinoplasty</td>
+                            <td class="price-high">$8,000 - $15,000</td>
+                            <td class="price-low">$2,500 - $5,000</td>
+                            <td class="price-low">70-75%</td>
+                        </tr>
+                        <tr>
+                            <td>Dental Implant (per tooth)</td>
+                            <td class="price-high">$3,000 - $6,000</td>
+                            <td class="price-low">$800 - $1,500</td>
+                            <td class="price-low">70-75%</td>
+                        </tr>
+                        <tr>
+                            <td>Hip Replacement</td>
+                            <td class="price-high">$40,000 - $60,000</td>
+                            <td class="price-low">$10,000 - $15,000</td>
+                            <td class="price-low">70-75%</td>
+                        </tr>
+                        <tr>
+                            <td>Heart Bypass Surgery</td>
+                            <td class="price-high">$100,000 - $150,000</td>
+                            <td class="price-low">$20,000 - $35,000</td>
+                            <td class="price-low">75-80%</td>
+                        </tr>
+                        <tr>
+                            <td>IVF Treatment (1 cycle)</td>
+                            <td class="price-high">$15,000 - $25,000</td>
+                            <td class="price-low">$4,000 - $7,000</td>
+                            <td class="price-low">70-75%</td>
+                        </tr>
+                        <tr>
+                            <td>Facelift</td>
+                            <td class="price-high">$10,000 - $20,000</td>
+                            <td class="price-low">$3,000 - $6,000</td>
+                            <td class="price-low">70-75%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Price database (in USD)
+        const procedurePrices = {
+            // Cosmetic Surgery
+            'rhinoplasty': { china: 3500, usa: 11000, canada: 9500, uk: 7500, australia: 10000, germany: 8000, singapore: 8500 },
+            'facelift': { china: 4500, usa: 15000, canada: 13000, uk: 10000, australia: 14000, germany: 11000, singapore: 12000 },
+            'breast-augmentation': { china: 4000, usa: 8000, canada: 7000, uk: 6000, australia: 9000, germany: 6500, singapore: 7500 },
+            'liposuction': { china: 2500, usa: 6000, canada: 5500, uk: 4500, australia: 5800, germany: 5000, singapore: 5500 },
+            'tummy-tuck': { china: 3800, usa: 9000, canada: 8000, uk: 7000, australia: 8500, germany: 7500, singapore: 8000 },
+            
+            // Dental
+            'dental-implant': { china: 1200, usa: 4500, canada: 4000, uk: 3000, australia: 4200, germany: 3200, singapore: 3500 },
+            'dental-crown': { china: 400, usa: 1500, canada: 1300, uk: 900, australia: 1400, germany: 1000, singapore: 1100 },
+            'veneers': { china: 350, usa: 1800, canada: 1500, uk: 1000, australia: 1600, germany: 1200, singapore: 1300 },
+            'full-mouth-rehab': { china: 8000, usa: 35000, canada: 30000, uk: 25000, australia: 32000, germany: 27000, singapore: 29000 },
+            
+            // Cardiac
+            'heart-bypass': { china: 28000, usa: 125000, canada: 80000, uk: 45000, australia: 95000, germany: 55000, singapore: 70000 },
+            'valve-replacement': { china: 25000, usa: 110000, canada: 75000, uk: 40000, australia: 90000, germany: 50000, singapore: 65000 },
+            'angioplasty': { china: 8000, usa: 35000, canada: 25000, uk: 15000, australia: 30000, germany: 18000, singapore: 22000 },
+            
+            // Orthopedics
+            'hip-replacement': { china: 12000, usa: 50000, canada: 40000, uk: 20000, australia: 45000, germany: 25000, singapore: 32000 },
+            'knee-replacement': { china: 11000, usa: 45000, canada: 38000, uk: 18000, australia: 42000, germany: 23000, singapore: 30000 },
+            'spine-surgery': { china: 15000, usa: 65000, canada: 55000, uk: 30000, australia: 60000, germany: 35000, singapore: 45000 },
+            
+            // Other
+            'ivf-cycle': { china: 5500, usa: 20000, canada: 15000, uk: 8000, australia: 18000, germany: 10000, singapore: 12000 },
+            'cataract-surgery': { china: 2000, usa: 5500, canada: 4500, uk: 2500, australia: 5000, germany: 3000, singapore: 3500 },
+            'health-checkup': { china: 800, usa: 3000, canada: 2500, uk: 1500, australia: 2800, germany: 1800, singapore: 2000 }
+        };
+
+        const flightCosts = {
+            'USA': { beijing: 1200, shanghai: 1200, guangzhou: 1300, taiwan: 1100 },
+            'Canada': { beijing: 1300, shanghai: 1300, guangzhou: 1400, taiwan: 1200 },
+            'UK': { beijing: 900, shanghai: 900, guangzhou: 950, taiwan: 950 },
+            'Australia': { beijing: 1000, shanghai: 1000, guangzhou: 950, taiwan: 800 },
+            'Germany': { beijing: 850, shanghai: 850, guangzhou: 900, taiwan: 900 },
+            'Singapore': { beijing: 600, shanghai: 600, guangzhou: 500, taiwan: 400 }
+        };
+
+        const accommodationCost = 80; // per day
+        const interpretationCost = 300;
+        const pickupCost = 80;
+        const accommodationAssistCost = 150;
+        const recoveryPackageCost = 500;
+
+        function calculateCost() {
+            const procedure = document.getElementById('procedure').value;
+            const homeCountry = document.getElementById('homeCountry').value;
+            const location = document.getElementById('location').value;
+            const stayDuration = parseInt(document.getElementById('stayDuration').value);
+            const companions = parseInt(document.getElementById('companions').value);
+
+            if (!procedure) {
+                alert('Please select a procedure');
+                return;
+            }
+
+            // Get base costs
+            const chinaProcedureCost = procedurePrices[procedure].china;
+            const homeCountryCost = procedurePrices[procedure][homeCountry];
+            
+            // Calculate components
+            const hospitalStay = stayDuration * 150; // hospital daily rate
+            const accommodation = stayDuration * accommodationCost * (1 + companions);
+            const flight = flightCosts[homeCountry][location] * (1 + companions);
+            
+            // Additional services
+            let additional = 0;
+            if (document.getElementById('interpretation').checked) additional += interpretationCost;
+            if (document.getElementById('pickup').checked) additional += pickupCost;
+            if (document.getElementById('accommodation').checked) additional += accommodationAssistCost;
+            if (document.getElementById('recovery').checked) additional += recoveryPackageCost;
+
+            // Total
+            const totalChina = chinaProcedureCost + hospitalStay + accommodation + flight + additional;
+            const savings = homeCountryCost - totalChina;
+            const savingsPercent = Math.round((savings / homeCountryCost) * 100);
+
+            // Update UI
+            document.getElementById('procedureCost').textContent = `$${chinaProcedureCost.toLocaleString()}`;
+            document.getElementById('hospitalCost').textContent = `$${hospitalStay.toLocaleString()}`;
+            document.getElementById('accommodationCost').textContent = `$${accommodation.toLocaleString()}`;
+            document.getElementById('flightCost').textContent = `$${flight.toLocaleString()}`;
+            document.getElementById('additionalCost').textContent = `$${additional.toLocaleString()}`;
+            document.getElementById('totalChina').textContent = `$${totalChina.toLocaleString()}`;
+            
+            document.getElementById('homeCountryLabel').textContent = homeCountry;
+            document.getElementById('homeCountryCost').textContent = `$${homeCountryCost.toLocaleString()}`;
+            document.getElementById('chinaTotal').textContent = `$${totalChina.toLocaleString()}`;
+            
+            document.getElementById('savingsAmount').textContent = `$${savings.toLocaleString()}`;
+            document.getElementById('savingsPercent').textContent = `${savingsPercent}% less than ${homeCountry}`;
+
+            // Update comparison bars
+            const chinaPercentage = Math.round((totalChina / homeCountryCost) * 100);
+            document.getElementById('chinaBar').style.width = `${chinaPercentage}%`;
+            document.getElementById('chinaBar').textContent = `${chinaPercentage}%`;
+        }
+
+        // Auto-calculate on page load if procedure is selected
+        window.addEventListener('load', () => {
+            calculateCost();
+        });
+
+        // Recalculate on input change
+        ['procedure', 'homeCountry', 'location', 'stayDuration', 'companions'].forEach(id => {
+            document.getElementById(id).addEventListener('change', calculateCost);
+        });
+
+        ['interpretation', 'pickup', 'accommodation', 'recovery'].forEach(id => {
+            document.getElementById(id).addEventListener('change', calculateCost);
+        });
+    </script>
+</body>
+</html>
