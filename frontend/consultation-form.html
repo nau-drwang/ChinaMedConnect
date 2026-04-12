@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Consultation Request - ChinaMed Connect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a4d2e;
+            --primary-light: #2d6a4f;
+            --accent: #e8b923;
+            --text-dark: #1f1f1f;
+            --text-light: #5a5a5a;
+            --bg-light: #fafafa;
+            --bg-white: #ffffff;
+            --border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+        }
+
+        .form-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .form-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .section-description {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .required {
+            color: #e74c3c;
+            margin-left: 0.2rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Work Sans', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 77, 46, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+        }
+
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .radio-item:hover {
+            border-color: var(--primary);
+            background: rgba(26, 77, 46, 0.02);
+        }
+
+        .radio-item input[type="radio"]:checked + label {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .radio-item:has(input:checked) {
+            border-color: var(--primary);
+            background: rgba(26, 77, 46, 0.05);
+        }
+
+        .radio-item input[type="radio"] {
+            cursor: pointer;
+        }
+
+        .radio-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+            flex: 1;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .submit-button:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(26, 77, 46, 0.3);
+        }
+
+        .submit-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--border);
+            z-index: 0;
+        }
+
+        .progress-step {
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--border);
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-step.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .error-message {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .helper-text {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <h1>Free Medical Consultation Request</h1>
+            <p>Complete this form to receive a personalized treatment plan and cost estimate within 48 hours</p>
+        </div>
+
+        <div class="form-container">
+            <div class="error-message" id="errorMessage"></div>
+
+            <form id="consultationForm">
+                <!-- Section 1: Personal Information -->
+                <div class="form-section">
+                    <h2 class="section-title">1. Personal Information</h2>
+                    <p class="section-description">Please provide your basic contact details</p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name <span class="required">*</span></label>
+                            <input type="text" name="personalInfo.firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name <span class="required">*</span></label>
+                            <input type="text" name="personalInfo.lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email Address <span class="required">*</span></label>
+                            <input type="email" name="personalInfo.email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number (with country code) <span class="required">*</span></label>
+                            <input type="tel" name="personalInfo.phone" placeholder="+1 555-1234" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Country of Residence <span class="required">*</span></label>
+                            <input type="text" name="personalInfo.country" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Age</label>
+                            <input type="number" name="personalInfo.age" min="0" max="150">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Preferred Language <span class="required">*</span></label>
+                        <select name="personalInfo.preferredLanguage" required>
+                            <option value="English">English</option>
+                            <option value="Chinese">Chinese (中文)</option>
+                            <option value="Spanish">Spanish</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Section 2: Medical Intent -->
+                <div class="form-section">
+                    <h2 class="section-title">2. Medical Needs</h2>
+                    <p class="section-description">Tell us about your medical requirements</p>
+
+                    <div class="form-group">
+                        <label>Type of Medical Service Needed <span class="required">*</span></label>
+                        <select name="medicalIntent.serviceType" required>
+                            <option value="">-- Select Service --</option>
+                            <option value="Health Checkup">Premium Health Checkup</option>
+                            <option value="Cardiology">Cardiology & Heart Care</option>
+                            <option value="Oncology">Oncology/Cancer Treatment</option>
+                            <option value="Orthopedics">Orthopedics & Joint Care</option>
+                            <option value="Cosmetic Surgery">Cosmetic & Plastic Surgery</option>
+                            <option value="Dental Care">Advanced Dental Care</option>
+                            <option value="Pediatric Care">Pediatric & Children's Health</option>
+                            <option value="TCM/Integrative Medicine">Traditional Chinese Medicine</option>
+                            <option value="Fertility Treatment">IVF & Fertility Treatment</option>
+                            <option value="Other Specialized Treatment">Other Specialized Treatment</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>How Soon Do You Need Treatment? <span class="required">*</span></label>
+                        <select name="medicalIntent.urgency" required>
+                            <option value="">-- Select Timeline --</option>
+                            <option value="Immediate (within 1 month)">Immediate (within 1 month)</option>
+                            <option value="Soon (1-3 months)">Soon (1-3 months)</option>
+                            <option value="Planning (3-6 months)">Planning (3-6 months)</option>
+                            <option value="Research (6+ months)">Research/Exploring (6+ months)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Brief Description of Your Condition</label>
+                        <textarea name="medicalIntent.currentCondition" placeholder="Please describe your current medical condition or what treatment you're seeking..."></textarea>
+                        <p class="helper-text">This helps us match you with the right specialists</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Previous Diagnosis (if any)</label>
+                        <input type="text" name="medicalIntent.previousDiagnosis" placeholder="e.g., diagnosed with condition X in 2023">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Preferred Region</label>
+                        <select name="medicalIntent.preferredRegion">
+                            <option value="Other/Flexible">No Preference / Flexible</option>
+                            <option value="Beijing">Beijing</option>
+                            <option value="Shanghai">Shanghai</option>
+                            <option value="Guangdong">Guangdong (Guangzhou/Shenzhen)</option>
+                            <option value="Taiwan">Taiwan</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Section 3: Financial Information -->
+                <div class="form-section">
+                    <h2 class="section-title">3. Budget & Payment</h2>
+                    <p class="section-description">Help us provide appropriate options within your budget</p>
+
+                    <div class="form-group">
+                        <label>Estimated Budget Range <span class="required">*</span></label>
+                        <select name="financialInfo.budget" required>
+                            <option value="">-- Select Budget --</option>
+                            <option value="Under $5,000">Under $5,000</option>
+                            <option value="$5,000-$10,000">$5,000 - $10,000</option>
+                            <option value="$10,000-$25,000">$10,000 - $25,000</option>
+                            <option value="$25,000-$50,000">$25,000 - $50,000</option>
+                            <option value="Over $50,000">Over $50,000</option>
+                            <option value="Flexible">Flexible / Not Sure</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Intended Payment Method <span class="required">*</span></label>
+                        <select name="financialInfo.paymentMethod" id="paymentMethod" required>
+                            <option value="">-- Select Payment Method --</option>
+                            <option value="Self-Pay">Self-Pay (Out of Pocket)</option>
+                            <option value="International Insurance">International Health Insurance</option>
+                            <option value="Travel Insurance">Travel Insurance</option>
+                            <option value="Government Program">Government Health Program</option>
+                            <option value="Undecided">Haven't Decided Yet</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="insuranceProviderGroup" style="display: none;">
+                        <label>Insurance Provider Name</label>
+                        <input type="text" name="financialInfo.insuranceProvider" placeholder="e.g., Cigna Global, Aetna International">
+                    </div>
+                </div>
+
+                <!-- Section 4: Current Challenges -->
+                <div class="form-section">
+                    <h2 class="section-title">4. What Brings You to Us?</h2>
+                    <p class="section-description">Select all challenges you're currently facing (optional but helpful)</p>
+
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="challenge1" name="currentChallenges" value="High cost in home country">
+                            <label for="challenge1">Treatment costs too high in my home country</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="challenge2" name="currentChallenges" value="Long waiting times">
+                            <label for="challenge2">Facing long waiting times (months or years)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="challenge3" name="currentChallenges" value="Lack of specialized care">
+                            <label for="challenge3">Cannot find specialized care in my area</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="challenge4" name="currentChallenges" value="Looking for second opinion">
+                            <label for="challenge4">Seeking a second medical opinion</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="challenge5" name="currentChallenges" value="Seeking alternative treatments">
+                            <label for="challenge5">Interested in alternative/integrative treatments (TCM)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="challenge6" name="currentChallenges" value="Insurance doesn't cover procedure">
+                            <label for="challenge6">My insurance doesn't cover this procedure</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="challenge7" name="currentChallenges" value="Other">
+                            <label for="challenge7">Other reasons</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Travel Information -->
+                <div class="form-section">
+                    <h2 class="section-title">5. Travel Preferences</h2>
+                    <p class="section-description">Help us plan your medical journey</p>
+
+                    <div class="form-group">
+                        <label>Will you be traveling with a companion?</label>
+                        <select name="travelInfo.travelWithCompanion" id="companionSelect">
+                            <option value="false">No, traveling alone</option>
+                            <option value="true">Yes, with companion(s)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="companionNumberGroup" style="display: none;">
+                        <label>Number of Companions</label>
+                        <input type="number" name="travelInfo.numberOfCompanions" min="0" max="5" value="0">
+                    </div>
+
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="needVisa" name="travelInfo.needVisaAssistance" value="true">
+                            <label for="needVisa">I need assistance with visa application</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="needAccommodation" name="travelInfo.needAccommodationArrangement" value="true">
+                            <label for="needAccommodation">I need help arranging accommodation</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Estimated Length of Stay</label>
+                        <select name="travelInfo.estimatedStayDuration">
+                            <option value="">Not sure yet</option>
+                            <option value="Less than 1 week">Less than 1 week</option>
+                            <option value="1-2 weeks">1-2 weeks</option>
+                            <option value="2-4 weeks">2-4 weeks</option>
+                            <option value="Over 1 month">Over 1 month</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Section 6: Additional Information -->
+                <div class="form-section">
+                    <h2 class="section-title">6. Additional Details</h2>
+
+                    <div class="form-group">
+                        <label>Do you have medical records available?</label>
+                        <select name="additionalInfo.medicalRecordsAvailable">
+                            <option value="true">Yes, I can provide medical records</option>
+                            <option value="false">No, I don't have records available</option>
+                        </select>
+                        <p class="helper-text">Medical records help our doctors provide more accurate assessments</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>How did you hear about us?</label>
+                        <select name="additionalInfo.howDidYouHear">
+                            <option value="">-- Select --</option>
+                            <option value="Google Search">Google Search</option>
+                            <option value="Social Media">Social Media (Facebook, Instagram, etc.)</option>
+                            <option value="Friend/Family Referral">Recommended by Friend or Family</option>
+                            <option value="Medical Professional">Referred by Medical Professional</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Special Requests or Questions</label>
+                        <textarea name="additionalInfo.specialRequests" placeholder="Any special requirements, dietary restrictions, accessibility needs, or specific questions you'd like to ask..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button" id="submitBtn">
+                    Submit Consultation Request
+                </button>
+            </form>
+
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">✅</div>
+                <h2>Thank You!</h2>
+                <p style="font-size: 1.1rem; margin: 1rem 0;">Your consultation request has been submitted successfully.</p>
+                <p style="color: var(--text-light);">
+                    Reference ID: <strong id="referenceId"></strong><br>
+                    We will contact you at <strong id="confirmEmail"></strong> within 24-48 hours.
+                </p>
+                <a href="china-medical-tourism.html" style="display: inline-block; margin-top: 2rem; padding: 1rem 2rem; background: var(--primary); color: white; text-decoration: none; border-radius: 30px;">Return to Homepage</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show/hide insurance provider field
+        document.getElementById('paymentMethod').addEventListener('change', function() {
+            const insuranceGroup = document.getElementById('insuranceProviderGroup');
+            if (this.value === 'International Insurance' || this.value === 'Travel Insurance') {
+                insuranceGroup.style.display = 'block';
+            } else {
+                insuranceGroup.style.display = 'none';
+            }
+        });
+
+        // Show/hide number of companions field
+        document.getElementById('companionSelect').addEventListener('change', function() {
+            const companionGroup = document.getElementById('companionNumberGroup');
+            if (this.value === 'true') {
+                companionGroup.style.display = 'block';
+            } else {
+                companionGroup.style.display = 'none';
+            }
+        });
+
+        // Form submission
+        document.getElementById('consultationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const formContainer = document.querySelector('.form-container');
+            const successMessage = document.getElementById('successMessage');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            errorMessage.classList.remove('show');
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {
+                personalInfo: {},
+                medicalIntent: {},
+                financialInfo: {},
+                currentChallenges: [],
+                travelInfo: {},
+                additionalInfo: {}
+            };
+
+            // Parse form data into structured object
+            for (let [key, value] of formData.entries()) {
+                if (key === 'currentChallenges') {
+                    data.currentChallenges.push(value);
+                } else {
+                    const parts = key.split('.');
+                    if (parts.length === 2) {
+                        data[parts[0]][parts[1]] = value;
+                    }
+                }
+            }
+
+            // Convert boolean strings
+            if (data.travelInfo.travelWithCompanion) {
+                data.travelInfo.travelWithCompanion = data.travelInfo.travelWithCompanion === 'true';
+            }
+            if (data.additionalInfo.medicalRecordsAvailable) {
+                data.additionalInfo.medicalRecordsAvailable = data.additionalInfo.medicalRecordsAvailable === 'true';
+            }
+
+            try {
+                // API endpoint - Update this with your Railway backend URL
+                const API_URL = 'https://your-backend-url.up.railway.app/api/consultations';
+                
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Show success message
+                    formContainer.querySelector('form').style.display = 'none';
+                    successMessage.classList.add('show');
+                    document.getElementById('referenceId').textContent = result.data.referenceId;
+                    document.getElementById('confirmEmail').textContent = result.data.email;
+                } else {
+                    throw new Error(result.message || 'Submission failed');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                errorMessage.textContent = 'There was an error submitting your request. Please try again or contact us directly at info@chinamedconnect.com';
+                errorMessage.classList.add('show');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Consultation Request';
+            }
+        });
+    </script>
+</body>
+</html>
