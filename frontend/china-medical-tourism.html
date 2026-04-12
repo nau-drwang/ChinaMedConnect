@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChinaMed Connect - World-Class Healthcare at Accessible Prices</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a4d2e;
+            --primary-light: #2d6a4f;
+            --accent: #e8b923;
+            --text-dark: #1f1f1f;
+            --text-light: #5a5a5a;
+            --bg-light: #fafafa;
+            --bg-white: #ffffff;
+            --border: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #fafafa 0%, #f0f4f1 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(26, 77, 46, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-50px, 50px) rotate(180deg); }
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(26, 77, 46, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .hero-highlight {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: rgba(232, 185, 35, 0.3);
+            z-index: -1;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            max-width: 550px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .primary-btn {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            font-size: 1rem;
+        }
+
+        .primary-btn:hover {
+            background: var(--primary-light);
+            border-color: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(26, 77, 46, 0.2);
+        }
+
+        .secondary-btn {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .secondary-btn:hover {
+            gap: 1rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: var(--bg-white);
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card.popular {
+            border: 2px solid #ff6b9d;
+            background: linear-gradient(135deg, #fff5f8 0%, var(--bg-light) 100%);
+        }
+
+        .service-card.featured {
+            border: 2px solid #4ecdc4;
+            background: linear-gradient(135deg, #f0fcfb 0%, var(--bg-light) 100%);
+        }
+
+        .service-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff6b9d;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .service-card.featured .service-badge {
+            background: #4ecdc4;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--border);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-features li {
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Why China Section */
+        .why-china {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d6a4f 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-china::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(232, 185, 35, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .why-china .section-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .why-china .section-tag {
+            color: var(--accent);
+        }
+
+        .why-china .section-title,
+        .why-china .section-subtitle {
+            color: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .benefit-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+        }
+
+        /* Hospitals Section */
+        .hospitals {
+            padding: 6rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .region-tabs {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0 3rem;
+            flex-wrap: wrap;
+        }
+
+        .region-tab {
+            padding: 0.8rem 1.8rem;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .region-tab:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .region-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .hospital-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .hospital-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .hospital-card.featured {
+            border: 2px solid var(--accent);
+        }
+
+        .hospital-card.taiwan-special {
+            border: 2px solid #00a8cc;
+            background: linear-gradient(135deg, #f0f9ff 0%, white 100%);
+        }
+
+        .hospital-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: var(--text-dark);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 10;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .taiwan-badge {
+            background: linear-gradient(135deg, #00a8cc 0%, #0077b6 100%);
+            color: white;
+        }
+
+        .hospital-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .hospital-image {
+            height: 220px;
+            background: linear-gradient(135deg, #2d6a4f 0%, #1a4d2e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .hospital-content {
+            padding: 2rem;
+        }
+
+        .hospital-location {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+        }
+
+        .hospital-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        .hospital-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+
+        .hospital-specialties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 1.5rem 0;
+        }
+
+        .specialty-tag {
+            background: var(--bg-light);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            border: 1px solid var(--border);
+        }
+
+        .hospital-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .hospital-stat {
+            text-align: center;
+        }
+
+        .hospital-stat-value {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .hospital-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 0.2rem;
+        }
+
+        .view-all-container {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .view-all-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 500;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .view-all-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(26, 77, 46, 0.2);
+        }
+
+        /* Process Section */
+        .process {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .process-timeline {
+            max-width: 900px;
+            margin: 3rem auto 0;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--accent) 100%);
+        }
+
+        .process-step {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-content {
+            flex: 1;
+            padding-top: 0.5rem;
+        }
+
+        .step-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+        }
+
+        .step-content p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            padding: 6rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .trust-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .trust-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .trust-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .trust-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .trust-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--bg-light) 0%, white 100%);
+        }
+
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--primary);
+            padding: 4rem 3rem;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(232, 185, 35, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-container h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-container p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .cta-input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent);
+        }
+
+        .cta-submit {
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: var(--text-dark);
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-submit:hover {
+            background: #f5c842;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            color: var(--text-dark);
+        }
+
+        .footer-links h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            padding: 0.4rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .cta-form {
+                flex-direction: column;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .process-timeline::before {
+                left: 20px;
+            }
+
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">ChinaMed Connect</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#hospitals">Hospitals</a></li>
+                <li><a href="#process">How It Works</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="consultation-form.html" class="cta-button">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-tag">International Medical Tourism Platform</span>
+                <h1>
+                    <span class="hero-highlight">World-Class</span><br>
+                    Healthcare in China<br>
+                    at Accessible Prices
+                </h1>
+                <p>
+                    Experience exceptional medical care at China's top-tier hospitals with international departments. 
+                    Save up to 70% on procedures including cardiac care, oncology treatment, orthopedics, and premium dental services.
+                </p>
+                <div class="hero-buttons">
+                    <a href="consultation-form.html" class="primary-btn">Start Your Journey</a>
+                    <a href="#process" class="secondary-btn">
+                        Learn How →
+                    </a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Partner Hospitals</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">70%</span>
+                    <span class="stat-label">Cost Savings</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15K+</span>
+                    <span class="stat-label">Patients Served</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Our Services</div>
+                <h2 class="section-title">Comprehensive Medical Solutions</h2>
+                <p class="section-subtitle">
+                    From preventive care to specialized treatments, we connect you with China's finest medical facilities
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏥</div>
+                    <h3>Premium Health Checkups</h3>
+                    <p>Comprehensive diagnostic screenings with state-of-the-art equipment and personalized health assessments</p>
+                    <ul class="service-features">
+                        <li>Full-body CT & MRI scans</li>
+                        <li>Advanced cancer screening</li>
+                        <li>Genetic testing available</li>
+                        <li>Same-day results</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">❤️</div>
+                    <h3>Cardiology & Heart Care</h3>
+                    <p>Expert cardiac care from diagnosis to complex interventions and post-operative rehabilitation</p>
+                    <ul class="service-features">
+                        <li>Minimally invasive procedures</li>
+                        <li>Bypass surgery specialists</li>
+                        <li>Valve replacement</li>
+                        <li>Cardiac rehabilitation</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎗️</div>
+                    <h3>Oncology Treatment</h3>
+                    <p>Comprehensive cancer care with cutting-edge therapies and multidisciplinary teams</p>
+                    <ul class="service-features">
+                        <li>Immunotherapy & targeted therapy</li>
+                        <li>Precision radiation therapy</li>
+                        <li>Clinical trials access</li>
+                        <li>Integrated care approach</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🦴</div>
+                    <h3>Orthopedics & Joint Care</h3>
+                    <p>Advanced orthopedic solutions including joint replacements and sports medicine</p>
+                    <ul class="service-features">
+                        <li>Robotic-assisted surgery</li>
+                        <li>Hip & knee replacement</li>
+                        <li>Sports injury treatment</li>
+                        <li>Rapid recovery protocols</li>
+                    </ul>
+                </div>
+                <div class="service-card popular">
+                    <div class="service-badge">Popular</div>
+                    <div class="service-icon">✨</div>
+                    <h3>Cosmetic & Plastic Surgery</h3>
+                    <p>World-class aesthetic procedures at 60-80% less than Western prices with experienced board-certified surgeons</p>
+                    <ul class="service-features">
+                        <li>Facial surgery (rhinoplasty, facelift)</li>
+                        <li>Breast augmentation & body contouring</li>
+                        <li>Non-surgical treatments (Botox, fillers)</li>
+                        <li>Post-operative recovery tourism</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌿</div>
+                    <h3>Integrative Medicine</h3>
+                    <p>Unique combination of modern Western medicine with Traditional Chinese Medicine (TCM)</p>
+                    <ul class="service-features">
+                        <li>Acupuncture & herbal therapy</li>
+                        <li>Pain management</li>
+                        <li>Chronic disease care</li>
+                        <li>Wellness programs</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🧬</div>
+                    <h3>Specialized Treatments</h3>
+                    <p>Access to cutting-edge procedures and rare disease expertise</p>
+                    <ul class="service-features">
+                        <li>Stem cell therapy</li>
+                        <li>IVF & fertility treatments</li>
+                        <li>Organ transplantation</li>
+                        <li>Rare disease specialists</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🦷</div>
+                    <h3>Advanced Dental Care</h3>
+                    <p>Premium dental services at a fraction of Western costs, with state-of-the-art technology and experienced specialists</p>
+                    <ul class="service-features">
+                        <li>Dental implants & crowns</li>
+                        <li>Cosmetic dentistry & veneers</li>
+                        <li>Orthodontics (Invisalign)</li>
+                        <li>Full mouth rehabilitation</li>
+                    </ul>
+                </div>
+                <div class="service-card featured">
+                    <div class="service-badge">Family Care</div>
+                    <div class="service-icon">👶</div>
+                    <h3>Pediatric & Children's Health</h3>
+                    <p>Specialized care for infants, children, and adolescents at world-renowned pediatric centers</p>
+                    <ul class="service-features">
+                        <li>Pediatric surgery & oncology</li>
+                        <li>Congenital heart disease treatment</li>
+                        <li>Developmental disorders care</li>
+                        <li>Family-friendly facilities</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why China Section -->
+    <section id="why" class="why-china">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Why Choose China</div>
+                <h2 class="section-title">The Advantage is Clear</h2>
+                <p class="section-subtitle">
+                    Combine exceptional medical expertise with significant cost savings and unique healthcare innovations
+                </p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-number">70%</div>
+                    <h3>Cost Savings</h3>
+                    <p>
+                        Major procedures cost 40-70% less than in the US, UK, or Australia, without compromising quality. 
+                        Insurance-friendly billing available.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">2026</div>
+                    <h3>Government-Certified Programs</h3>
+                    <p>
+                        Official pilot hospitals certified by provincial health authorities in 2026. Guangdong's first batch 
+                        of 25 international medical service hospitals with government backing.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">HK</div>
+                    <h3>Hong Kong-Macao Drug Access</h3>
+                    <p>
+                        Exclusive access to advanced medications and medical devices approved in Hong Kong and Macao 
+                        through the "Hong Kong-Macao Drug & Device Access" policy at pilot hospitals.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">24/7</div>
+                    <h3>No Wait Times</h3>
+                    <p>
+                        Skip months-long waiting lists. Get appointments within days and procedures scheduled 
+                        within weeks, not months.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">TCM</div>
+                    <h3>East Meets West</h3>
+                    <p>
+                        Unique integration of Traditional Chinese Medicine with modern Western treatments. 
+                        Acupuncture, herbal therapy, and holistic wellness programs unavailable elsewhere.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">JCI</div>
+                    <h3>International Accreditation</h3>
+                    <p>
+                        Our partner hospitals hold JCI accreditation and international quality certifications, 
+                        meeting the highest global healthcare standards.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">151</div>
+                    <h3>Proven Global Experience</h3>
+                    <p>
+                        Top hospitals have served patients from 151 countries with 47+ years of international 
+                        medical service expertise.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">100%</div>
+                    <h3>English Support</h3>
+                    <p>
+                        Full English-speaking support from consultation to discharge. Medical interpreters, 
+                        translated documents, and international coordinators.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">AI</div>
+                    <h3>Advanced Technology</h3>
+                    <p>
+                        Access to the latest medical equipment including robotic surgery systems, AI-assisted diagnostics, 
+                        and cutting-edge treatment protocols.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Hospitals -->
+    <section id="hospitals" class="hospitals">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Partner Institutions</div>
+                <h2 class="section-title">Premier Medical Centers Across China</h2>
+                <p class="section-subtitle">
+                    50+ top-tier hospitals with dedicated international medical departments and multilingual support
+                </p>
+            </div>
+
+            <!-- Region Tabs -->
+            <div class="region-tabs">
+                <button class="region-tab active" data-region="all">All Regions</button>
+                <button class="region-tab" data-region="beijing">Beijing</button>
+                <button class="region-tab" data-region="shanghai">Shanghai</button>
+                <button class="region-tab" data-region="guangdong">Guangdong</button>
+                <button class="region-tab" data-region="taiwan">Taiwan</button>
+                <button class="region-tab" data-region="other">Other Cities</button>
+            </div>
+
+            <div class="hospital-cards">
+                <!-- Beijing Hospitals -->
+                <div class="hospital-card" data-region="beijing">
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Beijing · National Premier</div>
+                        <h3>Peking Union Medical College Hospital</h3>
+                        <p class="hospital-description">China's most prestigious comprehensive hospital with over 100 years of excellence in international medical services.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Cardiology</span>
+                            <span class="specialty-tag">Oncology</span>
+                            <span class="specialty-tag">Neurology</span>
+                            <span class="specialty-tag">Endocrinology</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">100+</div>
+                                <div class="hospital-stat-label">Years</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">JCI</div>
+                                <div class="hospital-stat-label">Certified</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Intl Dept</div>
+                                <div class="hospital-stat-label">Established</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card" data-region="beijing">
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Beijing</div>
+                        <h3>China-Japan Friendship Hospital</h3>
+                        <p class="hospital-description">Pioneer in international medical cooperation with extensive experience serving foreign patients.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Respiratory</span>
+                            <span class="specialty-tag">TCM Integration</span>
+                            <span class="specialty-tag">Geriatrics</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">40+</div>
+                                <div class="hospital-stat-label">Years</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">3,500</div>
+                                <div class="hospital-stat-label">Beds</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Intl Dept</div>
+                                <div class="hospital-stat-label">Since 1984</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card" data-region="beijing">
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Beijing</div>
+                        <h3>Peking University International Hospital</h3>
+                        <p class="hospital-description">Purpose-built international hospital combining Chinese excellence with global standards.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Orthopedics</span>
+                            <span class="specialty-tag">Cardiology</span>
+                            <span class="specialty-tag">Health Screening</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">100%</div>
+                                <div class="hospital-stat-label">English</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">VIP</div>
+                                <div class="hospital-stat-label">Services</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Insurance</div>
+                                <div class="hospital-stat-label">Direct Bill</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shanghai Hospitals -->
+                <div class="hospital-card" data-region="shanghai">
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Shanghai · Top 10 National</div>
+                        <h3>Huashan Hospital, Fudan University</h3>
+                        <p class="hospital-description">Renowned for neurosurgery, dermatology, and comprehensive medical excellence with advanced international department.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Neurosurgery</span>
+                            <span class="specialty-tag">Dermatology</span>
+                            <span class="specialty-tag">Infectious Disease</span>
+                            <span class="specialty-tag">Orthopedics</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">4,000+</div>
+                                <div class="hospital-stat-label">Beds</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Top 10</div>
+                                <div class="hospital-stat-label">Nationally</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Intl Dept</div>
+                                <div class="hospital-stat-label">Established</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card" data-region="shanghai">
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Shanghai</div>
+                        <h3>Zhongshan Hospital, Fudan University</h3>
+                        <p class="hospital-description">Leading comprehensive hospital with exceptional cardiac, liver disease, and general surgery departments.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Cardiology</span>
+                            <span class="specialty-tag">Hepatology</span>
+                            <span class="specialty-tag">General Surgery</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">90+</div>
+                                <div class="hospital-stat-label">Years</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Top 5</div>
+                                <div class="hospital-stat-label">Shanghai</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Intl Dept</div>
+                                <div class="hospital-stat-label">Available</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card" data-region="shanghai">
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Shanghai · NEW 2025</div>
+                        <h3>Yueyang Hospital of Integrated TCM & Western Medicine</h3>
+                        <p class="hospital-description">Newly launched international department (Nov 2025) specializing in integrated Traditional Chinese and Western medicine.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">TCM + Western</span>
+                            <span class="specialty-tag">Acupuncture</span>
+                            <span class="specialty-tag">Pain Management</span>
+                            <span class="specialty-tag">Rehabilitation</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Unique</div>
+                                <div class="hospital-stat-label">TCM Focus</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">2025</div>
+                                <div class="hospital-stat-label">Intl Dept</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Holistic</div>
+                                <div class="hospital-stat-label">Approach</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guangdong Hospitals -->
+                <div class="hospital-card featured" data-region="guangdong">
+                    <div class="hospital-badge">2026 Official Pilot Hospital</div>
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Guangzhou · Government Certified</div>
+                        <h3>Guangdong Provincial People's Hospital</h3>
+                        <p class="hospital-description">Served patients from 151 countries. First batch of Guangdong's official international medical service pilot hospitals (2026).</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Cardiovascular</span>
+                            <span class="specialty-tag">Oncology</span>
+                            <span class="specialty-tag">Comprehensive</span>
+                            <span class="specialty-tag">Hong Kong-Macao Drug Access</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">151</div>
+                                <div class="hospital-stat-label">Countries</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">2026</div>
+                                <div class="hospital-stat-label">Pilot</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Intl Center</div>
+                                <div class="hospital-stat-label">Established</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card featured" data-region="guangdong">
+                    <div class="hospital-badge">2026 Official Pilot Hospital</div>
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Guangzhou · South China Leader</div>
+                        <h3>The First Affiliated Hospital, Sun Yat-sen University</h3>
+                        <p class="hospital-description">South China's most comprehensive hospital with cutting-edge facilities and international medical center.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Multi-Specialty</span>
+                            <span class="specialty-tag">Organ Transplant</span>
+                            <span class="specialty-tag">Advanced Surgery</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">#1</div>
+                                <div class="hospital-stat-label">South China</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">2026</div>
+                                <div class="hospital-stat-label">Pilot</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Intl Center</div>
+                                <div class="hospital-stat-label">Available</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card featured" data-region="guangdong">
+                    <div class="hospital-badge">2026 Official Pilot Hospital</div>
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Guangzhou</div>
+                        <h3>Nanfang Hospital, Southern Medical University</h3>
+                        <p class="hospital-description">47 years of international medical service experience with comprehensive capabilities.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Digestive</span>
+                            <span class="specialty-tag">Oncology</span>
+                            <span class="specialty-tag">Neurosurgery</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">47</div>
+                                <div class="hospital-stat-label">Years Exp</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">2026</div>
+                                <div class="hospital-stat-label">Pilot</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Proven</div>
+                                <div class="hospital-stat-label">Track Record</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card featured" data-region="guangdong">
+                    <div class="hospital-badge">2026 Official Pilot Hospital</div>
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Shenzhen · International Standard</div>
+                        <h3>The University of Hong Kong-Shenzhen Hospital</h3>
+                        <p class="hospital-description">Hong Kong management model with direct access to international and Hong Kong medical standards.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">HK Standards</span>
+                            <span class="specialty-tag">International Mgmt</span>
+                            <span class="specialty-tag">English Service</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">HK</div>
+                                <div class="hospital-stat-label">Model</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">2026</div>
+                                <div class="hospital-stat-label">Pilot</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">100%</div>
+                                <div class="hospital-stat-label">Intl Ready</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card featured" data-region="guangdong">
+                    <div class="hospital-badge">2026 Official Pilot Hospital</div>
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Guangzhou · TCM Specialty</div>
+                        <h3>Guangdong Provincial Hospital of Chinese Medicine</h3>
+                        <p class="hospital-description">Premier traditional Chinese medicine hospital offering acupuncture, herbal therapy, and integrated treatments to international patients.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Traditional TCM</span>
+                            <span class="specialty-tag">Acupuncture</span>
+                            <span class="specialty-tag">Herbal Medicine</span>
+                            <span class="specialty-tag">Wellness</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">TCM</div>
+                                <div class="hospital-stat-label">Leader</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">2026</div>
+                                <div class="hospital-stat-label">Pilot</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Holistic</div>
+                                <div class="hospital-stat-label">Care</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Taiwan Hospitals -->
+                <div class="hospital-card taiwan-special" data-region="taiwan">
+                    <div class="hospital-badge taiwan-badge">Taiwan Excellence</div>
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Taipei · International Leader</div>
+                        <h3>National Taiwan University Hospital</h3>
+                        <p class="hospital-description">Taiwan's premier medical center with exceptional standards, English-friendly services, and advanced medical technology.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Organ Transplant</span>
+                            <span class="specialty-tag">Cancer Care</span>
+                            <span class="specialty-tag">Cardiology</span>
+                            <span class="specialty-tag">Neurosurgery</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">#1</div>
+                                <div class="hospital-stat-label">Taiwan</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">JCI</div>
+                                <div class="hospital-stat-label">Accredited</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Global</div>
+                                <div class="hospital-stat-label">Standard</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card taiwan-special" data-region="taiwan">
+                    <div class="hospital-badge taiwan-badge">Taiwan Excellence</div>
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Taipei</div>
+                        <h3>Taipei Medical University Hospital</h3>
+                        <p class="hospital-description">Leading medical institution known for innovative treatments and outstanding international patient services.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Cosmetic Surgery</span>
+                            <span class="specialty-tag">Orthopedics</span>
+                            <span class="specialty-tag">IVF</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Top 5</div>
+                                <div class="hospital-stat-label">Taiwan</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">English</div>
+                                <div class="hospital-stat-label">Friendly</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Intl Dept</div>
+                                <div class="hospital-stat-label">Established</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card taiwan-special" data-region="taiwan">
+                    <div class="hospital-badge taiwan-badge">Taiwan Excellence</div>
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Taichung</div>
+                        <h3>China Medical University Hospital</h3>
+                        <p class="hospital-description">Comprehensive medical center with strong pediatric and cancer treatment programs, serving international patients.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Pediatrics</span>
+                            <span class="specialty-tag">Oncology</span>
+                            <span class="specialty-tag">TCM Integration</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">2,000+</div>
+                                <div class="hospital-stat-label">Beds</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Central</div>
+                                <div class="hospital-stat-label">Taiwan</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Intl Dept</div>
+                                <div class="hospital-stat-label">Available</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card taiwan-special" data-region="taiwan">
+                    <div class="hospital-badge taiwan-badge">Taiwan Excellence</div>
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Taipei · Aesthetic Leader</div>
+                        <h3>Chang Gung Memorial Hospital</h3>
+                        <p class="hospital-description">Asia's largest hospital system with world-renowned plastic surgery and craniofacial centers.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Plastic Surgery</span>
+                            <span class="specialty-tag">Craniofacial</span>
+                            <span class="specialty-tag">Burn Center</span>
+                            <span class="specialty-tag">Liver Transplant</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">10,000+</div>
+                                <div class="hospital-stat-label">Beds Total</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">#1</div>
+                                <div class="hospital-stat-label">Asia Scale</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Intl Center</div>
+                                <div class="hospital-stat-label">Excellence</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Cities -->
+                <div class="hospital-card" data-region="other">
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Chengdu · Western China Leader</div>
+                        <h3>West China Hospital, Sichuan University</h3>
+                        <p class="hospital-description">The largest single-site hospital in the world, renowned for comprehensive medical excellence.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Comprehensive</span>
+                            <span class="specialty-tag">Research</span>
+                            <span class="specialty-tag">Advanced Tech</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">4,300+</div>
+                                <div class="hospital-stat-label">Beds</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">#1</div>
+                                <div class="hospital-stat-label">West China</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Intl Dept</div>
+                                <div class="hospital-stat-label">Available</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card" data-region="other">
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Wuhan</div>
+                        <h3>Tongji Hospital, Huazhong University of Science & Technology</h3>
+                        <p class="hospital-description">Leading comprehensive hospital in Central China with strong international medical cooperation.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Cardiology</span>
+                            <span class="specialty-tag">Oncology</span>
+                            <span class="specialty-tag">Emergency</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">120+</div>
+                                <div class="hospital-stat-label">Years</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Top 10</div>
+                                <div class="hospital-stat-label">National</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Intl Dept</div>
+                                <div class="hospital-stat-label">Established</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card" data-region="other">
+                    <div class="hospital-image">🏥</div>
+                    <div class="hospital-content">
+                        <div class="hospital-location">Xi'an</div>
+                        <h3>The First Affiliated Hospital of Xi'an Jiaotong University</h3>
+                        <p class="hospital-description">Northwest China's premier medical center with comprehensive international medical services.</p>
+                        <div class="hospital-specialties">
+                            <span class="specialty-tag">Multi-Specialty</span>
+                            <span class="specialty-tag">Research</span>
+                            <span class="specialty-tag">Teaching</span>
+                        </div>
+                        <div class="hospital-stats">
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">3,500+</div>
+                                <div class="hospital-stat-label">Beds</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">#1</div>
+                                <div class="hospital-stat-label">Northwest</div>
+                            </div>
+                            <div class="hospital-stat">
+                                <div class="hospital-stat-value">Intl Dept</div>
+                                <div class="hospital-stat-label">Available</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view-all-container">
+                <a href="#" class="view-all-btn">View All 50+ Partner Hospitals →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Simple Process</div>
+                <h2 class="section-title">Your Journey to Better Health</h2>
+                <p class="section-subtitle">
+                    We handle every detail from initial consultation to post-treatment follow-up
+                </p>
+            </div>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Initial Consultation</h3>
+                        <p>
+                            Submit your medical records and requirements through our secure platform. 
+                            Our team reviews your case and matches you with appropriate specialists and facilities.
+                        </p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Treatment Plan & Quote</h3>
+                        <p>
+                            Receive a detailed treatment plan, cost estimate, and recommended hospitals within 48 hours. 
+                            Video consultations with Chinese specialists available.
+                        </p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Travel Arrangements</h3>
+                        <p>
+                            We assist with visa applications, flight bookings, airport pickup, and accommodation near the hospital. 
+                            Medical visa invitation letters provided.
+                        </p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Treatment & Care</h3>
+                        <p>
+                            Receive world-class treatment with dedicated English-speaking coordinators. 
+                            Family accommodation and local support throughout your stay.
+                        </p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Follow-Up Care</h3>
+                        <p>
+                            Post-treatment support including virtual follow-ups, medical record translations, 
+                            and coordination with your home healthcare providers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators Section -->
+    <section class="trust-section">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Our Commitment</div>
+                <h2 class="section-title">Built on Trust & Excellence</h2>
+                <p class="section-subtitle">
+                    We connect you with China's most reputable medical institutions
+                </p>
+            </div>
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <div class="trust-icon">🏆</div>
+                    <h3>JCI Accredited Hospitals</h3>
+                    <p>All partner hospitals meet Joint Commission International standards - the gold standard in global healthcare quality</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">🛡️</div>
+                    <h3>Government Certified</h3>
+                    <p>Official international medical service pilot hospitals certified by provincial health authorities in 2026</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">🌏</div>
+                    <h3>Proven Track Record</h3>
+                    <p>Our partner hospitals have successfully served patients from over 150 countries with decades of experience</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">💼</div>
+                    <h3>Insurance Compatible</h3>
+                    <p>Direct billing arrangements with major international insurance providers for seamless payment processing</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">🔒</div>
+                    <h3>Data Security</h3>
+                    <p>HIPAA-compliant medical record handling and encrypted communication to protect your privacy</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">📞</div>
+                    <h3>24/7 Support</h3>
+                    <p>English-speaking patient coordinators available around the clock throughout your medical journey</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="cta-container">
+            <h2>Ready to Start Your Medical Journey?</h2>
+            <p>
+                Get a free consultation and personalized treatment plan from our medical experts
+            </p>
+            <form class="cta-form">
+                <input type="email" class="cta-input" placeholder="Enter your email address" required>
+                <button type="submit" class="cta-submit">Get Free Consultation</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>ChinaMed Connect</h3>
+                <p>
+                    Your trusted bridge to world-class healthcare in China. 
+                    We make international medical care accessible, affordable, and seamless.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link">𝕏</a>
+                    <a href="#" class="social-link">in</a>
+                    <a href="#" class="social-link">f</a>
+                    <a href="#" class="social-link">📧</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Health Checkups</a></li>
+                    <li><a href="#">Cardiology</a></li>
+                    <li><a href="#">Oncology</a></li>
+                    <li><a href="#">Orthopedics</a></li>
+                    <li><a href="#">Dental Care</a></li>
+                    <li><a href="#">TCM Integration</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Partner Hospitals</a></li>
+                    <li><a href="#">Cost Calculator</a></li>
+                    <li><a href="#">Patient Stories</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ChinaMed Connect. All rights reserved. | Medical Tourism Facilitation Services</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('.cta-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            alert('Thank you for your interest! We will contact you at ' + email + ' within 24 hours.');
+            this.reset();
+        });
+
+        // Region filter functionality
+        const regionTabs = document.querySelectorAll('.region-tab');
+        const hospitalCards = document.querySelectorAll('.hospital-card');
+
+        regionTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const region = this.getAttribute('data-region');
+                
+                // Update active tab
+                regionTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter hospitals
+                hospitalCards.forEach(card => {
+                    if (region === 'all') {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else if (card.getAttribute('data-region') === region) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Add scroll animation to service cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .benefit-card, .hospital-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
